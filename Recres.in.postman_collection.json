@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "c6016e57-f2cb-433b-b3be-d9eef37362ac",
+		"name": "Recres.in",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26763400"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"createdUserId\", responseData.id);\r",
+									"\r",
+									"pm.test(\"should be not null\", function () {\r",
+									"   id = pm.collectionVariables.get(\"createdUserId\");\r",
+									"    pm.expect(id).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Mary1\",\r\n    \"job\": \"leader\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/users",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{Baseurl}}/api/users/{{requestedUserId}}",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{requestedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update only job",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/users/{{requestedUserId}}",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{requestedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user (full)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Mao",
+									"type": "text"
+								},
+								{
+									"key": "job",
+									"value": "Cat",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/users/{{requestedUserId}}",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{requestedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Baseurl}}/api/users/{{requestedUserId}}",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{requestedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register successfull",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/register",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register unsuccessfull",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/register",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login successfull",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/register",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login unsuccessfull",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Baseurl}}/api/register",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dealyed request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({key: 'Content-Type', value: 'application/json' })"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Baseurl",
+			"value": "https://reqres.in",
+			"type": "string"
+		},
+		{
+			"key": "createdUserId",
+			"value": ""
+		},
+		{
+			"key": "requestedUserId",
+			"value": "4",
+			"type": "string"
+		}
+	]
+}
